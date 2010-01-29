@@ -17,26 +17,26 @@ class TableObject {
 			$args[0] //First argment = table name
 		);
 		
+		$i = 1;
+		
 		//Add columns
-		for (
-			$i = 1; //Start from second argment
+		while (
 			$i <= count($args)
 				- 1 //Convert $args length to position of last element
-				- 1; //Skip first argment
-			$i++) {
+				- 1 //Skip first argment
+			&& $arg[$i] instanceof ColumnObject) {
 			
-				if ($arg[$i] instanceof ColumnObject) {
-					$this->addColumn($arg[$i]);
-				}
-				else {
-					break 1;
-				}
+				$this->addColumn($arg[$i]);
+				
+				$i++; //Point to next argment
 		}
 		
 		//Set primary keys
-		if (is_array(
-			end($args)) { //Last argment
-				$this->setPrimaryKeys(end($args));
+		if (!empty(
+			$primaryKeys = array_slice(
+				$args,
+				$i))) {
+					$this->setPrimaryKeys(end($primaryKeys));
 		}
 	}
 	
