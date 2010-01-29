@@ -48,7 +48,7 @@ class Url {
 	
 	private function getPort() {
 	
-		//Commom port value
+		//Commom port values
 		$ports = array(
 			'http'	=> 80,
 			'https'	=> 443
