@@ -47,9 +47,9 @@ class DatabaseObject {
 	
 	public function gotTable($table) {
 	
-		foreach ($this->tables as $table) {
+		foreach ($this->tables as $oldTable) {
 		
-			if ($this->getTableName($table) == $table->getName()) { //Compare table name
+			if ($this->getTableName($table) == $oldTable->getName()) { //Compare table name
 				return TRUE;
 			}
 		}
