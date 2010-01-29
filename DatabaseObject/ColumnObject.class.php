@@ -31,26 +31,23 @@ class ColumnObject {
 			$args[2] //Third argment = size
 		);
 		
-		//Optional
-		for (
-			$i = 3; //Start from the fourth argment
-			$i <= count($args)
-				- 1 //Convert $args length to position of last element
-				- 3; //Skip first 3 argments
-			$i++) {
+		$i = 3; //Point to the fourth argment
+		
+		//Set default value, optional
+		if (!empty($args[$i])
+			&& !$this->isValidOption($args[$i])) {
+		
+				$this->setDefaultValue($args[$i]);
 			
-				//Set default value
-				if (is_string($args[$i])) {
-					$this->setDefaultValue($args[$i]);
-				}
-				
-				//Set options
-				if (is_array($args[$i])) {
-				
-					$this->setOptions($args[$i]);
-					
-					break 1; //Options is the last argment
-				}
+				$i++; //Point to the fifth argment
+		}
+		
+		//Set options, optional
+		if (!empty(
+			$options = array_slice(
+				$args,
+				$i))) { //Start from fourth argment if not used, else fifth
+					$this->setOptions($options);
 		}
 	}
 	
