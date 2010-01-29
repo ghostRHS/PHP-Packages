@@ -47,6 +47,17 @@ class Url {
 	}
 	
 	private function getPort() {
+	
+		//Commom port value
+		$ports = array(
+			'http'	=> 80,
+			'https'	=> 443
+		);
+		
+		if ($this->port == $ports[$this->getScheme()]) {
+			return ''; //Return empty string, if the port is a standard one
+		}
+		
 		return $this->port;
 	}
 	
@@ -64,7 +75,7 @@ class Url {
 	}
 	
 	private function buildUrl() {
-		$this->url = $this->getScheme() . '://' . $this->getHost() . '.' . $this->getDomain() . (!empty($this->getPort()) ? ':' . $this-.getPort() : '') . '/' . $this->getPath();
+		$this->url = $this->getScheme() . '://' . $this->getHost() . '.' . $this->getDomain() . (!empty($this->getPort()) ? ':' . $this->getPort() : '') . '/' . $this->getPath();
 	}
 }
 
