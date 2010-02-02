@@ -33,6 +33,8 @@ class DatabaseObject {
 	
 	private function setTables($tables) {
 	
+		$this->tables = $tables;
+		
 		foreach ($tables as $table) {
 			$this->addTable($table);
 		}
