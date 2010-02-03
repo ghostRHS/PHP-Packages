@@ -61,11 +61,11 @@ class TableObject {
 		return FALSE;
 	}
 	
-	public function getColumn($column) {
+	public function getColumn($columnName) {
 	
-		foreach ($this->columns as $oldColumn) {
+		foreach ($this->columns as $column) {
 		
-			if ($this->getColumnName($column) == $column->getName()) { //Compare column name
+			if ($columnName == $column->getName()) { //Compare column name
 				return $column;
 			}
 		}
