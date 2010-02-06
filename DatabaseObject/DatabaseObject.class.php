@@ -42,33 +42,21 @@ class DatabaseObject {
 	
 	private function addTable(TableObject $table) {
 	
-		if (!$this->gotTable($table)) {
+		if (!$this->gotTable($table->getName())) {
 			$this->tables[] = $table;
 		}
 	}
 	
-	public function gotTable($table) {
+	public function gotTable($tableName) {
 	
-		foreach ($this->tables as $oldTable) {
+		foreach ($this->tables as $table) {
 		
-			if ($this->getTableName($table) == $oldTable->getName()) { //Compare table name
+			if ($tableName == $table->getName()) { //Compare table name
 				return TRUE;
 			}
 		}
 		
 		return FALSE;
-	}
-	
-	private function getTableName($table) {
-	
-		if (is_string($table)) {
-			return $table; //Table name
-		}
-		elseif ($table instanceof TableObject) {
-			return $table->getName();
-		}
-		
-		return '';
 	}
 	
 	public function getTable($tableName) {

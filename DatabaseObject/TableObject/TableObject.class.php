@@ -41,7 +41,7 @@ class TableObject {
 	
 	private function addColumn(ColumnObject $column) {
 	
-		if (!$this->gotColumn($column)
+		if (!$this->gotColumn($column->getName())
 			&& !empty($column->getName()) //$name is required
 			&& !empty($column->getDataType()) //$dataType is required
 			&& !empty($column->getSize())) { //$size is required
@@ -49,11 +49,11 @@ class TableObject {
 		}
 	}
 	
-	public function gotColumn($column) {
+	public function gotColumn($columnName) {
 	
-		foreach ($this->columns as $oldColumn) {
+		foreach ($this->columns as $column) {
 			
-			if ($this->getColumnName($column) == $oldColumn->getName()) { //Compare column name
+			if ($columnName == $column->getName()) { //Compare column name
 				return TRUE;
 			}
 		}
@@ -69,18 +69,6 @@ class TableObject {
 				return $column;
 			}
 		}
-	}
-	
-	private function getColumnName($column) {
-	
-		if (is_string($column)) {
-			return $column; //Column name
-		}
-		elseif ($column instanceof ColumnObject) {
-			return $column->getName();
-		}
-		
-		return '';
 	}
 	
 	private function setName($name) {
