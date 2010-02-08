@@ -96,11 +96,9 @@ class ColumnObject {
 	
 		$option = strtolower($option);
 		
-		if ($this->isValidOption($option)) {
-		
-			if (!$this->gotOption($option)) {
+		if ($this->isValidOption($option)		
+			&& !$this->gotOption($option)) {
 				$this->options[] = $option;
-			}
 		}
 	}
 	
